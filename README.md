@@ -12,14 +12,16 @@ after another against a fixed gauntlet of eight house engines, rated by Elo.
 
 `main.py` is the whole engine (packed from `engine.py` with
 `makefun compress`, LZMA + stub). 0x88 board, negamax alpha-beta with
-iterative deepening to a fixed node budget, quiescence on captures,
-MVV-LVA + killer + history move ordering, a transposition table, and a
-material + piece-square evaluation with an endgame king blend.
+iterative deepening to a fixed node budget, quiescence on captures
+(with mate detection when in check), MVV-LVA + killer + history move
+ordering, late-move reductions, a transposition table, repetition
+scoring 0 inside the search, and a material + piece-square evaluation
+with an endgame king blend.
 
 - Deterministic: search to a fixed node count, never a clock, no
   unseeded randomness, so a replay plays the same moves.
 - No model calls, no network but the env, standard library only.
-- About 40,000 nodes a move, ~1 second on one CPU.
+- About 100,000 nodes a move, ~2-3 seconds on one CPU.
 
 ## Size rule
 
